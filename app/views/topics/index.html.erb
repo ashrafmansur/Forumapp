@@ -1,0 +1,10 @@
+<h1>Topics Forum</h1>
+
+
+<% @topics.each do |s| %>
+<p>
+<%= "#{s.title} by #{s.user.firstname} #{s.user.lastname}" %>
+</p>
+<% end %>
+
+<%= link_to "New Topic", new_topic_path %>

@@ -1,0 +1,15 @@
+<h1>New Topic</h1>
+<%= form_for @topic, :url => topics_path do |f| %>
+   
+   <%= f.label :title, "Title" %>
+   <%= f.text_field :title %>
+
+   <%= f.label :body, "Description" %>
+   <%= f.text_area :body %>
+
+   <%= f.label :user_id, "Written By" %>
+   <%= f.text_field :user_id %>
+
+
+   <%= f.submit "Create" %>
+<% end %>
