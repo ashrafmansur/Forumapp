@@ -14,8 +14,7 @@ class TopicsController < ApplicationController
 
   	def create
 		@topic = Topic.create(topic_params)  		
-		#@topic.save
-
+		
   		redirect_to topics_url
 	end
 
