@@ -13,8 +13,8 @@ class TopicsController < ApplicationController
   	end
 
   	def create
-  		@topic = Topic.new(topic_params)
-  		@topic.save
+		@topic = Topic.create(topic_params)  		
+		#@topic.save
 
   		redirect_to topics_url
 	end

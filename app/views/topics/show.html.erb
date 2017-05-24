@@ -4,10 +4,9 @@
 
 <p>Comments (<%= @topics.comments.count %>)</p>
 <ul>
-	
 	<% @comments.each do |s| %>
 	<li><%= s.body %></li>
 	<% end %>
 </ul>
 
-<%= link_to "Post comment", new_topic_comment_path(2)	 %>
+<%= link_to "Post comment", new_topic_comment_path(@topics)%>
