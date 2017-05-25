@@ -7,5 +7,9 @@ Rails.application.routes.draw do
   	resources :comments
   end
 
+  #namespace 'admin' do
+  	#resources :topics
+  #end
+
   root "topics#index"
 end

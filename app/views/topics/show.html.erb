@@ -1,12 +1,17 @@
-<h1><%= @topics.title %> by <%= @topics.user.firstname %> <%= @topics.user.lastname %></h1>
+<h1><%= @topic.title %> by <%= @topic.user.firstname %> <%= @topic.user.lastname %></h1>
 
-<h2><%= @topics.body %></h2>
+<h2><%= @topic.body %></h2>
 
-<p>Comments (<%= @topics.comments.count %>)</p>
+<% if @topic.user.id == current_user.id %>
+<%= link_to "Edit", edit_topic_path(@topic) %>
+<%= link_to "Delete", topic_path(@topic), method: :delete, data:{ confirm:"ARE YOU SURE?!?" } %>
+<% end %>
+
+<p>Comments (<%= @topic.comments.count %>)</p>
 <ul>
-	<% @comments.each do |s| %>
-	<li><%= s.body %></li>
+	<% @comments.each do |comment| %>
+	<li><%= comment.body %></li>
 	<% end %>
 </ul>
 
-<%= link_to "Post comment", new_topic_comment_path(@topics)%>
+<%= link_to "Post comment", new_topic_comment_path(@topic)%>

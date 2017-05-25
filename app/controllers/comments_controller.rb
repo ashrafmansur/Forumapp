@@ -2,12 +2,15 @@ class CommentsController < ApplicationController
 	
   def new
     @topic = Topic.find(params[:topic_id])
-    @comment = @topic.comments.new
+    @comment = @topic.comments.build
   end
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @comment = @topic.comments.create(comment_params)
+
+    @comment = @topic.comments.build(comment_params)
+    @comment.user = current_user
+    if @comment.save
     
     redirect_to topic_path(@topic)
   end
@@ -15,7 +18,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :topic_id)  
+    params.require(:comment).permit(:body)  
   end
 
 end
