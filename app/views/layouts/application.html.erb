@@ -9,6 +9,12 @@
   </head>
 
   <body>
+  	<% if user_signed_in? %>
+		<p>Currently logged in as: <%= link_to "#{current_user.firstname}", user_path(current_user.id) %></p>	
+	<% else %>
+		<p>Not currently logged in</p>
+	<% end %>
     <%= yield %>
   </body>
 </html>
+

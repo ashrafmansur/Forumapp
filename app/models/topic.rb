@@ -1,11 +1,8 @@
 class Topic < ApplicationRecord
-  belongs_to :user
-  has_many :comments, dependent: :destroy
 
-	class << self
+	validates_presence_of :title, :body, :user_id
 
-	  
-	end
-
+	belongs_to :user
+	has_many :comments, dependent: :destroy
 
 end
