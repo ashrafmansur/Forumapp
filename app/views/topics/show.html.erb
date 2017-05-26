@@ -10,7 +10,11 @@
 <p>Comments (<%= @topic.comments.count %>)</p>
 <ul>
 	<% @comments.each do |comment| %>
-	<li><%= comment.body %></li>
+	<li><%= comment.body %> by <%= comment.user.firstname %></li>
+	<% if comment.user == current_user %>
+	<%= link_to "Edit", edit_topic_comment_path(:id => comment.id, :topic_id => @topic.id) %>
+	<%= link_to "Delete", topic_comment_path(:id => comment.id, :topic_id => @topic.id), method: :delete %>
+	<% end %>
 	<% end %>
 </ul>
 
