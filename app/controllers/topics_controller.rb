@@ -16,7 +16,6 @@ class TopicsController < ApplicationController
  	def create
     @topic = Topic.new(topic_params)
     @topic.user = current_user
-
     @topic = current_user.topics.build(topic_params)
 
     if @topic.save
@@ -33,7 +32,11 @@ class TopicsController < ApplicationController
   end
 
   def update
-    @topic.update_attributes(topic_params) ? redirect_to(topic_path(@topic)) : (render :edit)
+    if @topic.update_attributes(topic_params) 
+      redirect_to topic_path(@topic) 
+    else 
+      render :edit
+    end
   end
 
   def destroy
@@ -44,6 +47,7 @@ class TopicsController < ApplicationController
       redirect_to topic_path(@topic)
     end
   end
+
 
   private
 

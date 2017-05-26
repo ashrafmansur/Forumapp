@@ -1,13 +1,11 @@
 class CommentsController < ApplicationController
-	before_action :set_comment, only: []
+	before_action :set_topic, only: [:new, :create, :edit, :update, :destroy]
 
   def new
-    @topic = Topic.find(params[:topic_id])
     @comment = @topic.comments.build
   end
 
   def create
-    @topic = Topic.find(params[:topic_id])
     @comment = @topic.comments.build(comment_params)
     @comment.user = current_user
     
@@ -19,12 +17,10 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @topic = Topic.find(params[:topic_id])
     @comment = Comment.find(params[:id])
   end
 
   def update
-    @topic = Topic.find(params[:topic_id])
     @comment = Comment.find(params[:id])
     if @comment.update_attributes(comment_params)
       redirect_to topic_path(@topic)
@@ -36,7 +32,6 @@ class CommentsController < ApplicationController
 
 
   def destroy
-    @topic = Topic.find(params[:topic_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
 
@@ -47,6 +42,10 @@ class CommentsController < ApplicationController
 
   def set_comment
     
+  end
+
+  def set_topic
+    @topic = Topic.find(params[:topic_id])
   end
 
   def comment_params
